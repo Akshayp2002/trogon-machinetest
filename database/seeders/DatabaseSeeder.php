@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create 20 demo exams
-        Exam::factory(20)->create();
+        Exam::factory(2000)->create();
 
     }
 }
