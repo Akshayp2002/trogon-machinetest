@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Exam;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create 100 test users
-        User::factory(100)->create();
+        // Create 20 demo exams
+        Exam::factory(20)->create();
+
     }
 }

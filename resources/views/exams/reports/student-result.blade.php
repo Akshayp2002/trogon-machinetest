@@ -72,7 +72,24 @@
                         <td>
                             @if (isset($breakdown->questions->options) && ($options = json_decode($breakdown->questions->options, true)))
                                 @foreach ($options as $index => $option)
-                                    <div><strong>Option {{ $index + 1 }}:</strong> {{ $option }}</div>
+                                    @php
+                                        $optionNum = $index + 1;
+                                        $isChosen = is_array($submitted)
+                                            ? in_array($optionNum, $submitted)
+                                            : $submitted == $optionNum;
+                                        $isCorrect = is_array($correct)
+                                            ? in_array($optionNum, $correct)
+                                            : $correct == $optionNum;
+                                    @endphp
+                                    <div
+                                        style="
+                                        @if ($isCorrect && $isChosen) background-color: #90EE90;
+                                        @elseif ($isCorrect) background-color: #E8F5E9;
+                                        @elseif ($isChosen) background-color: #FFCDD2; @endif
+                                        padding: 8px; margin: 4px 0; border-radius: 4px;">
+                                        <strong>Option {{ $optionNum }}:</strong> {{ $option }}
+
+                                    </div>
                                 @endforeach
                             @else
                                 Options Not Found
